@@ -108,3 +108,58 @@ index.html.erb
 
 erb -> embedded ruby.
 
+```
+<h1>toast!</h1>
+<%= @time %>
+```
+
+inside controller
+
+```
+def index
+	@time = Time.now
+end
+```
+
+## Do something with data.
+## Generate a model.
+
+```
+rails generate model Article title:string body:text importance:integer
+```
+
+undo rails generate model
+
+```
+rails d model Article title:string body:text importance:integer
+```
+
+file /db/migrate.... time_stamp_create_articles.rb a file to change something in the database.
+
+go into database
+
+```
+psql
+\l <- list database
+\c <- change database
+\dt <- display tables.
+```
+
+run migration
+```
+rails db:migration
+```
+
+we can modify file in /db/migrate/time_stamp_create_articles.rb
+
+```
+schema.rb
+```
+dont change file directly, use db:migrate
+
+
+
+
+
+
+
