@@ -157,6 +157,150 @@ schema.rb
 ```
 dont change file directly, use db:migrate
 
+```
+rails console
+or
+rails c
+```
+
+```
+Article.all
+#create a new Article
+
+article = Article.new(title: "Hey there", body: "Isn't this a nice article', importance: 5);
+
+article.save
+```
+
+inside articles_controller.rb
+
+```
+def index
+	@articles = Article.all
+end
+```
+
+inside index.html.erb
+
+```
+<ul>
+	<% articles.each do article %>
+		<li> <%= article.title %> </li>
+	<% end %>
+</ul>
+```
+
+better than psql because it places you straight into the database the app is linked to.
+
+```
+rails db
+```
+
+### Create new article
+
+routes.
+
+```
+get 'article/new, to: 'articles#new'
+```
+
+controller.
+
+```
+#new method: 
+def new
+	@article = Article.new
+	
+end
+
+def create
+	@article = Article.new(title: "This is a great lesson", body: "breakfast meal", importance: 5)
+	@article.save
+end
+```
+
+views: new.html.erb
+
+```
+<h1> New Article </h1>
+
+<%= form_with model: @article do |form| %>
+	<div>
+		<%= form.label :title %>
+		<%= form.text_field :title %>
+	</div>
+	
+	<div>
+		<%= form.label :body %>
+		<%= form.text_area :body %>
+	</div>
+	
+	<div>
+		<%= form.label :importance %>
+		<%= form.number_field :importance %>
+	</div>
+	
+	<div>
+		<%= form.submit %>
+	</div>
+<% end %>
+```
+
+all the routes we need
+
+```
+resources :articles
+
+```
+
+controller
+
+```
+def create
+	@article = Article.new(title: "hello", body: "body is good", importance: 5
+	if @article.save
+		redirect_to @articles_path
+	else
+		render :new
+	end
+
+end
+```
+
+inside controller
+
+```
+	def index
+		console
+	end
+```
+
+inside console
+
+```
+params
+```
+
+inside controller
+
+```
+def create
+	@article = Article.new(article_params)
+	
+	if @article.save
+		redirect_to articles_parth
+	else
+		render :new
+	end
+end
+
+private
+
+def article_params
+	params.require(:article).permit(:title,:body,:importance)
+end
+```
+
 
 
 
