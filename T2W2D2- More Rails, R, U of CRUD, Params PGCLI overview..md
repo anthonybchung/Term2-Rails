@@ -25,4 +25,35 @@ view: show.html.erb
 ```
 
 ###Update.
-time 33:43
+
+edit_ _article_ _path
+
+add action
+
+```
+def edit
+	@article = Article.find(params[:id])
+end
+
+def update
+	@article = Article.find(params[:id])
+	
+	if @article.update(article_params)
+		redirect_to articles_path
+	else
+		render :edit
+	end
+end
+```
+
+view: edit.html.erb
+
+```
+<h1> Edit Article </h1>
+
+<%= form_with model: @article do |form| %>
+
+<% end %>
+```
+
+### pgcli
